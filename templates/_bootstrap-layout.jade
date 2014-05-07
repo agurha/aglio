@@ -124,12 +124,11 @@ html
     script(src="//code.jquery.com/jquery-1.11.0.min.js")
     script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
     script
-        :coffee
             # Show a warning when viewed as a local file, which will break the
             # links above that start with `//`.
-            if location.protocol is 'file:'
-                document.getElementById('localFile').style.display = 'block';
+            if (location.protocol === 'file:') {
+              document.getElementById('localFile').style.display = 'block';
+            }
     block scripts
         script
-            :coffee
-                $('table').addClass 'table'
+          $('table').addClass('table')

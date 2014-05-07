@@ -213,29 +213,36 @@ mixin Multipage()
     //- Multi-page support through Knockout.js
     script(src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js")
     script
-        :coffee
-            class App
-                constructor: ->
-                    @page = ko.observable 'home'
+        var App;
 
-            window.app = new App()
+        App = (function() {
+          function App() {
+            this.page = ko.observable('home');
+          }
 
-            window.onhashchange = ->
-                vars = {}
-                for v in location.hash.substr(1).split(',')
-                    parts = v.split ':'
-                    vars[parts[0]] = parts[1]
+          return App;
 
-                # Set the page
-                window.app.page vars.page or 'home'
+        })();
 
-                # Scroll to a header if Set
-                if vars.header
-                    $("##{vars.header}")[0].scrollIntoView true
-                else
-                    window.scrollTo 0, 0
+        window.app = new App();
 
-            ko.applyBindings window.app
+        window.onhashchange = function() {
+          var parts, v, vars, _i, _len, _ref;
+          vars = {};
+          _ref = location.hash.substr(1).split(',');
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            v = _ref[_i];
+            parts = v.split(':');
+            vars[parts[0]] = parts[1];
+          }
+          window.app.page(vars.page || 'home');
+          if (vars.header) {
+            return $("#" + vars.header)[0].scrollIntoView(true);
+          } else {
+            return window.scrollTo(0, 0);
+          }
+        };
 
-            # Load the correct page
-            window.onhashchange()
+        ko.applyBindings(window.app);
+
+        window.onhashchange();
