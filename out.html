@@ -1,0 +1,323 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>API Documentation</title><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200"><style>/* Highlight.js Theme Tomorrow */
+.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}</style><style>body,
+h4,
+h5 {
+  font-family: 'Roboto' sans-serif !important;
+}
+h1,
+h2,
+h3,
+.aglio {
+  font-family: 'Raleway' sans-serif !important;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  display: none;
+}
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a {
+  display: inline;
+}
+code {
+  color: #444;
+  background-color: #ddd;
+  font-family: 'Inconsolata' monospace !important;
+}
+a[data-target] {
+  cursor: pointer;
+}
+h4 {
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.back-to-top {
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  right: 24px;
+  padding: 4px 8px;
+  background-color: #eee;
+  text-decoration: none !important;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel {
+  overflow: hidden;
+}
+.panel-heading code {
+  color: #c7254e;
+  background-color: transparent;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.panel-heading h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+a.list-group-item {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+a.list-group-item.heading {
+  background-color: #f5f5f5;
+}
+.list-group-item.collapse {
+  display: none;
+}
+.list-group-item.collapse.in {
+  display: block;
+}
+#nav {
+  margin-top: 38px;
+  min-width: 255px;
+  top: 0;
+  bottom: 0;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  overflow-y: auto;
+}
+@media (max-width: 1199px) {
+  #nav {
+    min-width: 212px;
+  }
+}
+</style></head><body><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><div class="col-md-3"><nav id="nav" class="hidden-sm hidden-xs affix nav"></nav></div><div class="col-md-9"><div><header><div class="page-header"><h1 id="top">API Documentation</h1></div></header><div class="description"><h1 id="introduction">Introduction</h1>
+<p>An <a href="http://apiblueprint.org/">API Blueprint</a> renderer that supports multiple themes and outputs static HTML that can be served by any web host. API Blueprint is a Markdown-based document format that lets you write API descriptions and documentation in a simple and straightforward way. Currently supported is API Blueprint format 1A.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Fast parsing thanks to <a href="https://github.com/apiaryio/protagonist">Protagonist</a></li>
+<li>Asyncronous processing</li>
+<li>Multiple templates/themes</li>
+<li>Support for custom templates written in <a href="http://jade-lang.com/">Jade</a></li>
+<li>Commandline executable <code>aglio -i api.md -o api.html</code></li>
+<li>Preview server <code>aglio -i api.md --server</code></li>
+<li>Node.js library <code>require(&#39;aglio&#39;)</code></li>
+<li>Excellent test coverage</li>
+</ul>
+<h2 id="example-output">Example Output</h2>
+<p>Example output is generated from the <a href="https://raw.github.com/danielgtaylor/aglio/master/example.md">example API Blueprint</a>.</p>
+<ul>
+<li>Default theme: <a href="http://htmlpreview.github.io/?https://github.com/danielgtaylor/aglio/blob/master/examples/default.html">Single Page</a> or <a href="http://htmlpreview.github.io/?https://github.com/danielgtaylor/aglio/blob/master/examples/default-multi.html">Multiple Pages</a></li>
+<li>Flatly theme: <a href="http://htmlpreview.github.io/?https://github.com/danielgtaylor/aglio/blob/master/examples/flatly.html">Single Page</a> or <a href="http://htmlpreview.github.io/?https://github.com/danielgtaylor/aglio/blob/master/examples/flatly-multi.html">Multiple Pages</a></li>
+<li>Slate theme: <a href="http://htmlpreview.github.io/?https://github.com/danielgtaylor/aglio/blob/master/examples/slate.html">Single Page</a> or <a href="http://htmlpreview.github.io/?https://github.com/danielgtaylor/aglio/blob/master/examples/slate-multi.html">Multiple Pages</a></li>
+<li>Cyborg theme: <a href="http://htmlpreview.github.io/?https://github.com/danielgtaylor/aglio/blob/master/examples/cyborg.html">Single Page</a> or <a href="http://htmlpreview.github.io/?https://github.com/danielgtaylor/aglio/blob/master/examples/cyborg-multi.html">Multiple Pages</a></li>
+</ul>
+<h1 id="installation-usage">Installation &amp; Usage</h1>
+<p>There are two ways to use aglio: as an executable or as a library for Node.js.</p>
+<h2 id="executable">Executable</h2>
+<p>Install aglio via NPM. You need Node.js installed and you may need to use <code>sudo</code> to install globally:</p>
+<pre><code class="lang-bash">npm install -g aglio
+</code></pre>
+<p>Then, start generating HTML. Note that the built-in templates use scheme-relative URLs, so the resulting output files must be opened via <code>http:</code> or <code>https:</code>. Just opening the local file from the browser will result in a failure to load stylesheets and scripts. The <code>-s</code> option described below can help you with this.</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># Default template</span>
+aglio -i input.md -o output.html
+
+<span class="hljs-comment"># Get a list of built-in templates</span>
+aglio <span class="hljs-operator">-l</span>
+
+<span class="hljs-comment"># Built-in template</span>
+aglio -t slate -i input.md -o output.html
+
+<span class="hljs-comment"># Custom template</span>
+aglio -t /path/to/template.jade -i input.md -o output.html
+
+<span class="hljs-comment"># Run a preview server on http://localhost:3000/</span>
+aglio -i input.md <span class="hljs-operator">-s</span>
+
+<span class="hljs-comment"># Print output to terminal (useful for piping)</span>
+algio -i input.md -o -
+
+<span class="hljs-comment"># Disable condensing navigation links</span>
+aglio -i input.md --no-condense -o output.html
+</code></pre>
+<h2 id="node-js-library">Node.js Library</h2>
+<p>You can also use aglio as a library. First, install and save it as a dependency:</p>
+<pre><code class="lang-bash">npm install --save aglio
+</code></pre>
+<p>Then, convert some API Blueprint to HTML:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> aglio = <span class="hljs-built_in">require</span>(<span class="hljs-string">'aglio'</span>);
+
+<span class="hljs-comment">// Render a blueprint with a template by name</span>
+<span class="hljs-keyword">var</span> blueprint = <span class="hljs-string">'# Some API Blueprint string'</span>;
+<span class="hljs-keyword">var</span> template = <span class="hljs-string">'default'</span>;
+
+aglio.render(blueprint, template, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, html, warnings)</span> {</span>
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.log(err);
+    <span class="hljs-keyword">if</span> (warnings) console.log(warnings);
+
+    console.log(html);
+});
+
+<span class="hljs-comment">// Render a blueprint with a custom template file</span>
+<span class="hljs-keyword">var</span> customTemplate = <span class="hljs-string">'/path/to/my-template.jade'</span>;
+aglio.render(blueprint, customTemplate, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, html, warnings)</span> {</span>
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.log(err);
+    <span class="hljs-keyword">if</span> (warnings) console.log(warnings);
+
+    console.log(html);
+});
+
+
+<span class="hljs-comment">// Pass custom locals along to the template, for example</span>
+<span class="hljs-comment">// the following gives templates access to lodash and async</span>
+<span class="hljs-keyword">var</span> options = {
+    template: <span class="hljs-string">'/path/to/my-template.jade'</span>,
+    locals: {
+        _: <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>),
+        async: <span class="hljs-built_in">require</span>(<span class="hljs-string">'async'</span>)
+    }
+};
+aglio.render(blueprint, options, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, html, warnings)</span> {</span>
+   <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.log(err);
+   <span class="hljs-keyword">if</span> (warnings) console.log(warnings);
+
+   console.log(html);
+});
+</code></pre>
+<h3 id="reference">Reference</h3>
+<p>The following methods are available from the <code>aglio</code> library:</p>
+<h4 id="aglio-gettemplates-callback-">aglio.getTemplates (callback)</h4>
+<p>Get a list of internal template names that can be used when rendering.</p>
+<pre><code class="lang-javascript">aglio.getTemplates(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, names)</span> {</span>
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.log(err);
+
+    console.log(<span class="hljs-string">'Templates: '</span> + names.join(<span class="hljs-string">', '</span>));
+});
+</code></pre>
+<h4 id="aglio-render-blueprint-options-callback-">aglio.render (blueprint, options, callback)</h4>
+<p>Render an API Blueprint string and pass the generated HTML to the callback. The <code>options</code> can either be an object of options or a simple template name or file path string. Available options are:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>condenseNav</td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Condense navigation links</td>
+</tr>
+<tr>
+<td>filterInput</td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>Filter <code>\r</code> and <code>\t</code> from the input</td>
+</tr>
+<tr>
+<td>locals</td>
+<td>object</td>
+<td><code>{}</code></td>
+<td>Extra locals to pass to templates</td>
+</tr>
+<tr>
+<td>template</td>
+<td>string</td>
+<td></td>
+<td>Template name or path to custom template file</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> blueprint = <span class="hljs-string">'...'</span>;
+<span class="hljs-keyword">var</span> options = {
+    template: <span class="hljs-string">'default'</span>,
+    locals: {
+        myVariable: <span class="hljs-number">125</span>
+    }
+};
+
+alio.render(blueprint, options, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, html, warnings)</span> {</span>
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.log(err);
+
+    console.log(html);
+});
+</code></pre>
+<h4 id="aglio-renderfile-inputfile-outputfile-options-callback-">aglio.renderFile (inputFile, outputFile, options, callback)</h4>
+<p>Render an API Blueprint file and save the HTML to another file. The input/output file arguments are file paths. The options behaves the same as above for <code>aglio.render</code>.</p>
+<pre><code class="lang-javascript">aglio.renderFile(<span class="hljs-string">'/tmp/input.md'</span>, <span class="hljs-string">'/tmp/output.html'</span>, <span class="hljs-string">'default'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, warnings)</span> {</span>
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.log(err);
+    <span class="hljs-keyword">if</span> (warnings) console.log(warnings);
+})
+</code></pre>
+<h1 id="development">Development</h1>
+<p>Pull requests are encouraged! Feel free to fork and hack away, especially on new themes. The build system in use is Grunt, so make sure you have it installed:</p>
+<pre><code class="lang-bash">npm install -g grunt-cli
+</code></pre>
+<p>Then you can build the source and run the tests:</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># Lint/compile the Coffeescript</span>
+grunt
+
+<span class="hljs-comment"># Run the test suite</span>
+grunt test
+
+<span class="hljs-comment"># Generate an HTML test coverage report</span>
+grunt coverage
+
+<span class="hljs-comment"># Render examples</span>
+grunt examples
+</code></pre>
+<h2 id="custom-themes">Custom Themes</h2>
+<p>Themes are written using Jade, with support for Coffeescript and Stylus via filters. The output of aglio is a single HTML file, but custom themes can make use of Jade’s extend and include directives, which allow you to split a theme among multiple files (the built-in themes do this). The locals available to themes look like the following:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api</td>
+<td>The API AST from Protagonist</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Date and time handling from Moment.js</td>
+</tr>
+<tr>
+<td>highlight</td>
+<td>A function (<code>code</code>, <code>lang</code>) to highlight a piece of code</td>
+</tr>
+<tr>
+<td>markdown</td>
+<td>A function to convert Markdown strings to HTML</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>A function to convert a string to a slug usable as an ID</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>A function to return an hash (currently MD5)</td>
+</tr>
+</tbody>
+</table>
+<p>The default themes in the <code>templates</code> directory provide a fairly complete example of how to use the above locals. Remember, you can use any functionality available in Jade, Javascript, Coffeescript, CSS, and Stylus. Even though only one HTML page is generated, you can for example do client-side routing with Backbone, Sammy or Davis and get multiple pages on the client.</p>
+<h1 id="license">License</h1>
+<p>Copyright (c) 2014 Daniel G. Taylor</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 07 May 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+
+</div></body><script src="//code.jquery.com/jquery-1.11.0.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script>if (location.protocol === 'file:') {
+  document.getElementById('localFile').style.display = 'block';
+}</script><script>$('table').addClass('table')</script></html>
